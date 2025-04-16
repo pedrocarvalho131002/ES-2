@@ -1,0 +1,92 @@
+@page "{id:int}"
+@model SistemaPrecos.Web.Pages.Produtos.DetalhesModel
+@{
+    ViewData["Title"] = "Detalhes do Produto";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f2f5f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #007bff;
+        color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .topbar h1 {
+        margin: 0;
+        font-size: 1.6rem;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 2rem;
+    }
+
+    .produto-info p {
+        margin: 1rem 0;
+        font-size: 1.1rem;
+    }
+
+    .produto-info span {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .voltar {
+        display: block;
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .voltar a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    .voltar a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="topbar">
+    <h1>Compare Price</h1>
+</div>
+
+<div class="container">
+    <h2>Detalhes do Produto</h2>
+
+    <div class="produto-info">
+        <p><span>Nome:</span> @Model.Produto.Nome</p>
+        <p><span>Marca:</span> @Model.Produto.Marca</p>
+        <p><span>Descrição:</span> @Model.Produto.Descricao</p>
+        @if (!string.IsNullOrEmpty(Model.Produto.Categoria?.Nome))
+        {
+            <p><span>Categoria:</span> @Model.Produto.Categoria.Nome</p>
+        }
+    </div>
+
+    <div class="voltar">
+        <a href="/Produtos/Lista">← Voltar à Lista</a>
+    </div>
+</div>

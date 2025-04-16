@@ -1,0 +1,56 @@
+@page "/login"
+@model SistemaPrecos.Web.Pages.LoginModel
+@{
+    ViewData["Title"] = "Iniciar Sessão";
+}
+
+<div class="login-container">
+    <h2>Iniciar Sessão</h2>
+
+    @if (!string.IsNullOrEmpty(Model.Erro))
+    {
+        <div class="erro">@Model.Erro</div>
+    }
+
+    <form method="post">
+        <input asp-for="Username" placeholder="Utilizador" />
+        <input asp-for="Password" type="password" placeholder="Password" />
+        <button type="submit">Entrar</button>
+    </form>
+</div>
+
+<style>
+    .login-container {
+        max-width: 400px;
+        margin: 4rem auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+        padding: 0.7rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        padding: 0.7rem 1rem;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .erro {
+        color: red;
+        margin-bottom: 1rem;
+    }
+</style>

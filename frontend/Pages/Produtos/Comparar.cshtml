@@ -1,0 +1,156 @@
+@page "/Produtos/Comparar"
+@model SistemaPrecos.Web.Pages.Produtos.CompararModel
+@{
+    ViewData["Title"] = "Comparar Preços";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f2f5f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #007bff;
+        color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .topbar h1 {
+        margin: 0;
+        font-size: 1.6rem;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    select, button {
+        padding: 0.5rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .empty {
+        text-align: center;
+        color: #888;
+        padding: 2rem;
+    }
+
+    .voltar {
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>
+
+<div class="topbar">
+    <h1>Compare Price</h1>
+</div>
+
+<div class="container">
+    <h2>📊 Comparar Preços</h2>
+
+    <a href="/Main" class="voltar">⬅️ Voltar</a>
+
+    <form method="get">
+        <label for="ProdutoId" style="margin-bottom: 0;">Produto:</label>
+        <select name="ProdutoId" class="form-select">
+            <option value="">-- Escolha um produto --</option>
+            @foreach (var p in Model.Produtos)
+            {
+                <option value="@p.ProdutoId" selected="@(Model.ProdutoId == p.ProdutoId)">
+                    @p.Nome
+                </option>
+            }
+        </select>
+        <button type="submit">🔍 Comparar</button>
+    </form>
+
+    @if (Model.PrecosComparados.Any())
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Loja</th>
+                    <th>Localização</th>
+                    <th>Preço</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.PrecosComparados)
+                {
+                    <tr>
+                        <td>@item.NomeLoja</td>
+                        <td>@item.Localizacao</td>
+                        <td>@item.Preco.ToString("0.00")€</td>
+                        <td>@item.Data.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (Model.ProdutoId != 0)
+    {
+        <div class="empty">Nenhum preço encontrado para este produto.</div>
+    }
+</div>

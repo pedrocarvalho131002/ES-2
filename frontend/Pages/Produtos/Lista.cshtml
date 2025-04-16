@@ -1,0 +1,143 @@
+@page
+@model SistemaPrecos.Web.Pages.Produtos.ListaModel
+@{
+    ViewData["Title"] = "Lista de Produtos";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f2f5f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #007bff;
+        color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .topbar h1 {
+        margin: 0;
+        font-size: 1.6rem;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .empty {
+        text-align: center;
+        color: #888;
+        padding: 2rem;
+    }
+
+    .voltar {
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>
+
+<div class="topbar">
+    <h1>Compare Price</h1>
+</div>
+
+<div class="container">
+    <h2>Lista de Produtos</h2>
+
+    <a href="/Main" class="voltar">
+        ⬅️ Voltar
+    </a>
+
+    <form method="get" style="margin-bottom: 2rem; display: flex; gap: 1rem;">
+        <input type="text" name="termoPesquisa" placeholder="🔍 Procurar por nome..." value="@Model.TermoPesquisa" style="flex: 2; padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc;" />
+        
+        <select name="categoriaId" style="flex: 1; padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc;">
+            <option value="">Todas as Categorias</option>
+            @foreach (var categoria in Model.Categorias)
+            {
+                <option value="@categoria.CategoriaId" selected="@(categoria.CategoriaId == Model.CategoriaId)">
+                    @categoria.Nome
+                </option>
+            }
+        </select>
+
+        <button type="submit" style="padding: 0.5rem 1rem; border-radius: 6px; background-color: #007bff; color: white; border: none;">
+            🔎 Pesquisar
+        </button>
+    </form>
+
+    @if (Model.Produtos.Count == 0)
+    {
+        <div class="empty">Nenhum produto encontrado.</div>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                    <th>Descrição</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var produto in Model.Produtos)
+            {
+                <tr>
+                    <td>@produto.Nome</td>
+                    <td>@produto.Marca</td>
+                    <td>@produto.Descricao</td>
+                    <td>
+                        <a href="/Produtos/Detalhes/@produto.ProdutoId" class="btn btn-primary">Ver Detalhes</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>

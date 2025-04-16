@@ -1,0 +1,93 @@
+@page "/main"
+@model SistemaPrecos.Web.Pages.MainModel
+@{
+    ViewData["Title"] = "Compare Price";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f2f5f9;
+        margin: 0;
+    }
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #007bff;
+        color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .topbar h1 {
+        margin: 0;
+        font-size: 1.6rem;
+    }
+
+    .topbar a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 1rem;
+    }
+
+    .main-content {
+        text-align: center;
+        padding: 4rem 2rem;
+    }
+
+    .main-content h2 {
+        color: #333;
+        margin-bottom: 2rem;
+    }
+
+    .main-content .button {
+        display: inline-block;
+        margin: 1rem;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        border-radius: 10px;
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        transition: background 0.3s ease;
+    }
+
+    .main-content .button:hover {
+        background-color: #0056b3;
+    }
+
+    .welcome {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        color: #444;
+    }
+</style>
+
+<div class="topbar">
+    <h1>Compare Price</h1>
+
+    @if (Model.EstaAutenticado)
+    {
+        <div>
+            Olá, <strong>@Model.NomeUtilizador</strong>
+            <a asp-page="/Logout">Terminar Sessão</a>
+        </div>
+    }
+    else
+    {
+        <a href="/Login" class="login-link">Login</a>
+    }
+</div>
+
+<div class="main-content">
+    @if (!Model.EstaAutenticado)
+    {
+        <div class="welcome">Bem-vindo! Pode consultar os preços livremente.</div>
+    }
+
+    <a class="button" href="/Produtos/Lista">Listar Produtos</a>
+    <a class="button" href="/Produtos/Comparar">Comparar Preços</a>
+</div>
