@@ -7,6 +7,7 @@ namespace SistemaPrecos.API.Models
     public class Produto
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("produto_id")]
         public int ProdutoId { get; set; }
 

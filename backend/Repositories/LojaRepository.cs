@@ -12,6 +12,9 @@ namespace SistemaPrecos.API.Repositories
             _context = context;
         }
 
-        // Métodos específicos serão implementados conforme necessário
+        public List<Loja> GetAll()
+        {
+            return _context.Lojas.ToList();
+        }
     }
 }

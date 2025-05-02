@@ -13,7 +13,8 @@ builder.Services.AddDbContext<SistemaPrecosContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Repositórios
-builder.Services.AddScoped<CategoriaRepository>(); // <-- aqui registas o repositório
+builder.Services.AddScoped<CategoriaRepository>();
+builder.Services.AddScoped<LojaRepository>();
 
 // Add services
 builder.Services.AddControllers();

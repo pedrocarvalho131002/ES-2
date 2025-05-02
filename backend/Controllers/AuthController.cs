@@ -35,5 +35,33 @@ namespace SistemaPrecos.API.Controllers
                 Tipo = utilizador.TipoUtilizador.Tipo // "Administrador" ou "Utilizador"
             });
         }
+
+        [HttpPost("registar")]
+        public async Task<IActionResult> Registar([FromBody] UtilizadorCreateViewModel novoUser)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            // Verificar se já existe utilizador com o mesmo username ou email
+            var existente = await _context.Utilizadores
+                .AnyAsync(u => u.Username == novoUser.Username || u.Email == novoUser.Email);
+
+            if (existente)
+                return Conflict("Já existe um utilizador com esse username ou email.");
+
+            var utilizador = new Utilizador
+            {
+                Nome = novoUser.Nome,
+                Username = novoUser.Username,
+                Email = novoUser.Email,
+                Password = novoUser.Password,
+                TipoUtilizadorId = 2 // Tipo 'Utilizador' por defeito
+            };
+
+            _context.Utilizadores.Add(utilizador);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Utilizador registado com sucesso." });
+        }
     }
 }

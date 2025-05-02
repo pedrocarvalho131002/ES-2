@@ -16,6 +16,7 @@ namespace SistemaPrecos.API.Data
         public DbSet<TipoUtilizador> TiposUtilizador { get; set; }
         public DbSet<TipoAcao> TiposAcao { get; set; }
         public DbSet<RegistoPreco> RegistoPrecos { get; set; }
+        public DbSet<RegistoPreco> RegistosPrecos { get; set; }
         public DbSet<Mensagem> Mensagens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
