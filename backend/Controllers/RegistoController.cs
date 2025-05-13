@@ -20,44 +20,81 @@ namespace SistemaPrecos.API.Controllers
         [HttpPost]
         public async Task<IActionResult> RegistarPreco([FromBody] RegistoPrecoViewModel model)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            Console.WriteLine("📥 Pedido recebido em /api/registopreco");
 
-            // Verifica se o produto já existe (por nome e marca)
-            var produto = await _context.Produtos
-                .FirstOrDefaultAsync(p => p.Nome == model.Produto.Nome && p.Marca == model.Produto.Marca);
-
-            // Se não existir, cria novo produto (sem definir manualmente o ID)
-            if (produto == null)
+            try
             {
-                produto = new Produto
+                if (!ModelState.IsValid)
                 {
-                    Nome = model.Produto.Nome,
-                    Marca = model.Produto.Marca,
-                    Descricao = model.Produto.Descricao,
-                    CategoriaId = model.Produto.CategoriaId
+                    Console.WriteLine("❌ ModelState inválido.");
+                    return BadRequest(ModelState);
+                }
+
+                // Log do conteúdo recebido
+                Console.WriteLine("📝 Dados recebidos:");
+                Console.WriteLine($"Produto: {model.Produto?.Nome}, {model.Produto?.Marca}, {model.Produto?.Descricao}");
+                Console.WriteLine($"CategoriaId: {model.Produto?.CategoriaId}");
+                Console.WriteLine($"LojaId: {model.LojaId}, Preco: {model.Preco}, UtilizadorId: {model.UtilizadorId}, TipoAcaoId: {model.TipoAcaoId}");
+
+                // Verifica se o produto já existe (por nome e marca)
+                var produto = await _context.Produtos
+                    .FirstOrDefaultAsync(p => p.Nome == model.Produto.Nome && p.Marca == model.Produto.Marca);
+
+                // Se não existir, cria novo produto
+                if (produto == null)
+                {
+                    Console.WriteLine("➕ Produto novo — será criado.");
+                    produto = new Produto
+                    {
+                        Nome = model.Produto.Nome,
+                        Marca = model.Produto.Marca,
+                        Descricao = model.Produto.Descricao,
+                        CategoriaId = model.Produto.CategoriaId
+                    };
+
+                    _context.Produtos.Add(produto);
+                    await _context.SaveChangesAsync(); // Gera ProdutoId
+                    Console.WriteLine($"✅ Produto criado com ID {produto.ProdutoId}");
+                }
+                else
+                {
+                    Console.WriteLine($"ℹ️ Produto já existente com ID {produto.ProdutoId}");
+                }
+
+                // Verifica se a loja existe
+                var lojaExiste = await _context.Lojas.AnyAsync(l => l.LojaId == model.LojaId);
+                if (!lojaExiste)
+                {
+                    Console.WriteLine("❌ Loja não encontrada.");
+                    return BadRequest("LojaId inválido.");
+                }
+
+                // Cria o registo de preço
+                var registo = new RegistoPreco
+                {
+                    Preco = model.Preco,
+                    DataRegisto = DateTime.UtcNow,
+                    Credibilidade = 1.0, // valor base
+                    TipoAcaoId = model.TipoAcaoId,
+                    ProdutoId = produto.ProdutoId,
+                    LojaId = model.LojaId,
+                    UtilizadorId = model.UtilizadorId
                 };
 
-                _context.Produtos.Add(produto);
-                await _context.SaveChangesAsync(); // produto.ProdutoId é gerado automaticamente
+                _context.RegistosPrecos.Add(registo);
+                await _context.SaveChangesAsync();
+
+                Console.WriteLine("✅ Registo de preço guardado com sucesso.");
+                return Ok(new { message = "Registo de preço efetuado com sucesso." });
             }
-
-            // Cria o registo de preço
-            var registo = new RegistoPreco
+            catch (Exception ex)
             {
-                Preco = model.Preco,
-                DataRegisto = DateTime.UtcNow,
-                Credibilidade = 1.0, // valor base
-                TipoAcaoId = model.TipoAcaoId,
-                ProdutoId = produto.ProdutoId,
-                LojaId = model.LojaId,
-                UtilizadorId = model.UtilizadorId
-            };
+                Console.WriteLine("⚠️ ERRO AO REGISTAR PREÇO:");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
 
-            _context.RegistosPrecos.Add(registo);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { message = "Registo de preço efetuado com sucesso." });
+                return StatusCode(500, $"Erro interno: {ex.Message}");
+            }
         }
     }
 }

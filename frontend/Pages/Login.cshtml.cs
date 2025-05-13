@@ -24,7 +24,11 @@ namespace SistemaPrecos.Web.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            Console.WriteLine("OnPostAsync chamado!");
+            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
+            {
+                Erro = "Preenche todos os campos.";
+                return Page();
+            }
 
             var client = _httpClientFactory.CreateClient("Api");
 
@@ -40,17 +44,18 @@ namespace SistemaPrecos.Web.Pages
             {
                 var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
 
+                // Guardar cookies
                 HttpContext.Response.Cookies.Append("username", result!.Nome);
                 HttpContext.Response.Cookies.Append("tipo", result.Tipo);
+                HttpContext.Response.Cookies.Append("userid", result.UtilizadorId.ToString());
 
+                // Redirecionar com base no tipo
                 return result.Tipo == "Administrador"
                     ? RedirectToPage("/MainAdmin")
                     : RedirectToPage("/MainUtilizador");
             }
 
-            // DEBUG EXTRA: Mostra o erro de forma mais clara
-            var errorDetails = await response.Content.ReadAsStringAsync();
-            Erro = $"Erro ao iniciar sessão. Código: {response.StatusCode}. Detalhes: {errorDetails}";
+            Erro = "Credenciais inválidas. Verifica o nome de utilizador e a password.";
             return Page();
         }
     }

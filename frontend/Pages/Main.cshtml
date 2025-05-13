@@ -7,67 +7,76 @@
 <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: #f2f5f9;
+        background: #f1f1f1;
         margin: 0;
+        color: #2c2c2c;
     }
 
     .topbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 2rem;
-        background-color: #007bff;
-        color: white;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        padding: 1.2rem 2rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
-    .topbar h1 {
-        margin: 0;
-        font-size: 1.6rem;
-    }
+    .logo {
+    height: 80px;
+    margin-right: 1rem;
+}
 
     .topbar a {
-        color: white;
+        color: #333;
         text-decoration: none;
-        font-weight: bold;
-        margin-left: 1rem;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        transition: background 0.3s ease;
+    }
+
+    .topbar a:hover {
+        background-color: #e2e2e2;
     }
 
     .main-content {
         text-align: center;
-        padding: 4rem 2rem;
+        padding: 5rem 2rem;
     }
 
     .main-content h2 {
-        color: #333;
-        margin-bottom: 2rem;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .main-content .button {
         display: inline-block;
         margin: 1rem;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: bold;
         border-radius: 10px;
         text-decoration: none;
         color: white;
-        background-color: #007bff;
-        transition: background 0.3s ease;
+        background-color: #333;
+        transition: background 0.3s ease, transform 0.2s ease;
     }
 
     .main-content .button:hover {
-        background-color: #0056b3;
+        background-color: #111;
+        transform: scale(1.05);
     }
 
     .welcome {
         margin-bottom: 2rem;
-        font-size: 1.1rem;
-        color: #444;
+        font-size: 1.2rem;
+        color: #555;
     }
 </style>
 
 <div class="topbar">
-    <h1>Compare Price</h1>
+    <img src="/img/CP.png" alt="Compare Price" class="logo" />
 
     @if (Model.EstaAutenticado)
     {
@@ -85,7 +94,7 @@
 <div class="main-content">
     @if (!Model.EstaAutenticado)
     {
-        <div class="welcome">Bem-vindo! Pode consultar os preços livremente.</div>
+        <div class="welcome">Bem-vindo à plataforma <strong>Compare Price</strong>.<br />Explore e compare os melhores preços disponíveis.</div>
     }
 
     <a class="button" href="/Produtos/Lista">Listar Produtos</a>

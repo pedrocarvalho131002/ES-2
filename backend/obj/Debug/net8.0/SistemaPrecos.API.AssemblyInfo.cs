@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SistemaPrecos.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1af6af1d4a8e1a6b3b811942152ef5c92e9593d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3584a0aa00a27bf65999bce3088a3f00a04d5b54")]
 [assembly: System.Reflection.AssemblyProductAttribute("SistemaPrecos.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SistemaPrecos.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

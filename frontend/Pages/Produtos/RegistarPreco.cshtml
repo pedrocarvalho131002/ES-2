@@ -4,38 +4,167 @@
     ViewData["Title"] = "Registar Produto e Preço";
 }
 
-<h2>Registar Produto e Preço</h2>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        color: #2c2c2c;
+    }
 
-<form method="post">
-    <div>
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+        height: 80px;
+    }
+
+    .topbar a {
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 1rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        transition: background 0.2s ease;
+    }
+
+    .topbar a:hover {
+        background-color: #e2e2e2;
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 3rem auto;
+        padding: 2.5rem;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-top: 1rem;
+        font-weight: bold;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 0.4rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-submit, .btn-voltar {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+
+    .btn-submit {
+        background-color: #333;
+        color: white;
+        width: 100%;
+        transition: background 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background-color: #111;
+    }
+
+    .btn-voltar {
+        background-color: #999;
+        color: white;
+        margin-top: 1rem;
+    }
+
+    .btn-voltar:hover {
+        background-color: #777;
+    }
+
+    .text-danger {
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 0.2rem;
+        display: block;
+    }
+
+    .erro {
+        color: red;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+
+<div class="topbar">
+    <img src="/img/CP.png" alt="Compare Price" class="logo" />
+    <a asp-page="/Login">Terminar Sessão</a>
+</div>
+
+<div class="form-container">
+        <a href="javascript:window.history.back()" class="btn-voltar">Voltar</a>
+
+    <h2>Registar Produto e Preço</h2>
+
+    @if (!string.IsNullOrEmpty(Model.Erro))
+    {
+        <div class="erro">@Model.Erro</div>
+    }
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+
         <label>Nome do Produto:</label>
-        <input asp-for="Produto.Nome" />
-    </div>
+        <input asp-for="Produto.Nome" placeholder="Ex: Arroz Agulha" />
+        <span asp-validation-for="Produto.Nome" class="text-danger"></span>
 
-    <div>
         <label>Marca:</label>
-        <input asp-for="Produto.Marca" />
-    </div>
+        <input asp-for="Produto.Marca" placeholder="Ex: Pingo Doce" />
+        <span asp-validation-for="Produto.Marca" class="text-danger"></span>
 
-    <div>
         <label>Descrição:</label>
-        <input asp-for="Produto.Descricao" />
-    </div>
+        <input asp-for="Produto.Descricao" placeholder="Descrição do produto" />
+        <span asp-validation-for="Produto.Descricao" class="text-danger"></span>
 
-    <div>
         <label>Categoria:</label>
         <select asp-for="Produto.CategoriaId" asp-items="Model.Categorias"></select>
-    </div>
+        <span asp-validation-for="Produto.CategoriaId" class="text-danger"></span>
 
-    <div>
         <label>Loja:</label>
         <select asp-for="LojaId" asp-items="Model.Lojas"></select>
-    </div>
+        <span asp-validation-for="LojaId" class="text-danger"></span>
 
-    <div>
         <label>Preço:</label>
-        <input asp-for="Preco" type="number" step="0.01" />
-    </div>
+        <input asp-for="Preco" type="number" step="0.01" placeholder="0.00" />
+        <span asp-validation-for="Preco" class="text-danger"></span>
 
-    <button type="submit">Registar</button>
-</form>
+        <button type="submit" class="btn-submit">Registar</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\pc131\\.nuget\\packages\\": {}
+    "C:\\Users\\gonca\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pc131\\OneDrive\\Ambiente de Trabalho\\UNI\\2ºano\\Semestre 2\\ES2\\ES-2\\frontend\\SistemaPrecos.Web.csproj",
+      "projectUniqueName": "C:\\Users\\gonca\\OneDrive\\Ambiente de Trabalho\\VSCode\\ES-2\\ES-2\\frontend\\SistemaPrecos.Web.csproj",
       "projectName": "SistemaPrecos.Web",
-      "projectPath": "C:\\Users\\pc131\\OneDrive\\Ambiente de Trabalho\\UNI\\2ºano\\Semestre 2\\ES2\\ES-2\\frontend\\SistemaPrecos.Web.csproj",
-      "packagesPath": "C:\\Users\\pc131\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pc131\\OneDrive\\Ambiente de Trabalho\\UNI\\2ºano\\Semestre 2\\ES2\\ES-2\\frontend\\obj\\",
+      "projectPath": "C:\\Users\\gonca\\OneDrive\\Ambiente de Trabalho\\VSCode\\ES-2\\ES-2\\frontend\\SistemaPrecos.Web.csproj",
+      "packagesPath": "C:\\Users\\gonca\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gonca\\OneDrive\\Ambiente de Trabalho\\VSCode\\ES-2\\ES-2\\frontend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pc131\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\gonca\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

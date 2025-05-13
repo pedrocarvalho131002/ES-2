@@ -1,12 +1,93 @@
 @page
 @model SistemaPrecos.Web.Pages.MainUtilizadorModel
 
-<h2>Bem-vindo Utilizador</h2>
+@{
+    ViewData["Title"] = "Área do Utilizador - Compare Price";
+}
 
-<!-- Link simples -->
-<a href="/Produtos/Comparar">Comparar Preços</a>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f2f2f2;
+        margin: 0;
+        color: #2c2c2c;
+    }
 
-<br /><br />
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
 
-<!-- Botão para registar preço -->
-<a href="/Produtos/RegistarPreco" class="btn btn-primary">Registar Novo Preço</a>
+    .logo {
+        height: 80px;
+    }
+
+    .topbar a {
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 1rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        transition: background 0.2s ease;
+    }
+
+    .topbar a:hover {
+        background-color: #e2e2e2;
+    }
+
+    .main-content {
+        text-align: center;
+        padding: 5rem 2rem;
+    }
+
+    .main-content h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .main-content .button {
+        display: inline-block;
+        margin: 1rem;
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border-radius: 10px;
+        text-decoration: none;
+        color: white;
+        background-color: #333;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .main-content .button:hover {
+        background-color: #111;
+        transform: scale(1.05);
+    }
+
+    .welcome {
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        color: #555;
+    }
+</style>
+
+<div class="topbar">
+    <img src="/img/CP.png" alt="Compare Price" class="logo" />
+
+    <div>
+        Olá, <strong>@Model.NomeUtilizador</strong>
+        <a asp-page="/Login">Terminar Sessão</a>
+    </div>
+</div>
+
+<div class="main-content">
+    <h2>Área do Utilizador</h2>
+
+    <a class="button" href="/Produtos/Comparar">Comparar Preços</a>
+    <a class="button" href="/Produtos/RegistarPreco">Registar Novo Produto</a>
+</div>

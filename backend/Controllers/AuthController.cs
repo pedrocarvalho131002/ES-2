@@ -32,7 +32,8 @@ namespace SistemaPrecos.API.Controllers
             return Ok(new LoginResponse
             {
                 Nome = utilizador.Nome,
-                Tipo = utilizador.TipoUtilizador.Tipo // "Administrador" ou "Utilizador"
+                Tipo = utilizador.TipoUtilizador.Tipo, // "Administrador" ou "Utilizador"
+                UtilizadorId = utilizador.UtilizadorId 
             });
         }
 

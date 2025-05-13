@@ -7,9 +7,10 @@
 <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f2f5f9;
+        background-color: #f2f2f2;
         margin: 0;
         padding: 0;
+        color: #2c2c2c;
     }
 
     .topbar {
@@ -17,71 +18,81 @@
         justify-content: space-between;
         align-items: center;
         padding: 1rem 2rem;
-        background-color: #007bff;
-        color: white;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
-    .topbar h1 {
-        margin: 0;
-        font-size: 1.6rem;
+    .logo {
+        height: 80px;
     }
 
     .container {
         max-width: 900px;
         margin: 3rem auto;
         padding: 2rem;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     }
 
     h2 {
         text-align: center;
         margin-bottom: 2rem;
         color: #333;
+        font-size: 1.8rem;
     }
 
     form {
         display: flex;
         align-items: center;
         gap: 1rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    label {
+        font-weight: bold;
+        color: #333;
     }
 
     select, button {
-        padding: 0.5rem;
-        border-radius: 6px;
+        padding: 0.6rem;
+        border-radius: 8px;
         border: 1px solid #ccc;
         font-size: 1rem;
     }
 
     button {
-        background-color: #007bff;
+        background-color: #333;
         color: white;
-        border: none;
         font-weight: bold;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #111;
     }
 
     table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 1rem;
     }
 
     th, td {
         text-align: left;
         padding: 12px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #eee;
     }
 
     th {
-        background-color: #007bff;
+        background-color: #444;
         color: white;
     }
 
     tr:hover {
-        background-color: #f1f1f1;
+        background-color: #f5f5f5;
     }
 
     .empty {
@@ -92,28 +103,33 @@
 
     .voltar {
         display: inline-block;
-        margin-bottom: 1rem;
-        padding: 0.5rem 1rem;
-        background-color: #007bff;
+        margin-bottom: 1.5rem;
+        padding: 0.6rem 1.2rem;
+        background-color: #333;
         color: white;
-        border-radius: 6px;
+        border-radius: 8px;
         text-decoration: none;
         font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .voltar:hover {
+        background-color: #111;
     }
 </style>
 
 <div class="topbar">
-    <h1>Compare Price</h1>
+    <img src="/img/CP.png" alt="Compare Price" class="logo" />
 </div>
 
 <div class="container">
-    <h2>📊 Comparar Preços</h2>
+    <h2>Comparar Preços</h2>
 
-    <a href="/Main" class="voltar">⬅️ Voltar</a>
+    <a href="javascript:window.history.back()" class="voltar">Voltar</a>
 
     <form method="get">
-        <label for="ProdutoId" style="margin-bottom: 0;">Produto:</label>
-        <select name="ProdutoId" class="form-select">
+        <label for="ProdutoId">Produto:</label>
+        <select name="ProdutoId" id="ProdutoId">
             <option value="">-- Escolha um produto --</option>
             @foreach (var p in Model.Produtos)
             {
@@ -122,7 +138,7 @@
                 </option>
             }
         </select>
-        <button type="submit">🔍 Comparar</button>
+        <button type="submit">Comparar</button>
     </form>
 
     @if (Model.PrecosComparados.Any())

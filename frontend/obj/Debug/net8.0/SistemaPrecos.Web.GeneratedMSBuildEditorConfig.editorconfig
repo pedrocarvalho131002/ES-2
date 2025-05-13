@@ -9,51 +9,51 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SistemaPrecos.Web
 build_property.RootNamespace = SistemaPrecos.Web
-build_property.ProjectDir = C:\Users\pc131\OneDrive\Ambiente de Trabalho\UNI\2ºano\Semestre 2\ES2\ES-2\frontend\
+build_property.ProjectDir = C:\Users\gonca\OneDrive\Ambiente de Trabalho\VSCode\ES-2\ES-2\frontend\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\pc131\OneDrive\Ambiente de Trabalho\UNI\2ºano\Semestre 2\ES2\ES-2\frontend
+build_property.MSBuildProjectDirectory = C:\Users\gonca\OneDrive\Ambiente de Trabalho\VSCode\ES-2\ES-2\frontend
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/pc131/OneDrive/Ambiente de Trabalho/UNI/2ºano/Semestre 2/ES2/ES-2/frontend/Pages/Login.cshtml]
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pc131/OneDrive/Ambiente de Trabalho/UNI/2ºano/Semestre 2/ES2/ES-2/frontend/Pages/Main.cshtml]
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Main.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pc131/OneDrive/Ambiente de Trabalho/UNI/2ºano/Semestre 2/ES2/ES-2/frontend/Pages/MainAdmin.cshtml]
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/MainAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbkFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pc131/OneDrive/Ambiente de Trabalho/UNI/2ºano/Semestre 2/ES2/ES-2/frontend/Pages/MainUtilizador.cshtml]
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/MainUtilizador.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpblV0aWxpemFkb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pc131/OneDrive/Ambiente de Trabalho/UNI/2ºano/Semestre 2/ES2/ES-2/frontend/Pages/Produtos/Comparar.cshtml]
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Produtos/Comparar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHV0b3NcQ29tcGFyYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pc131/OneDrive/Ambiente de Trabalho/UNI/2ºano/Semestre 2/ES2/ES-2/frontend/Pages/Produtos/Detalhes.cshtml]
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Produtos/Detalhes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHV0b3NcRGV0YWxoZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pc131/OneDrive/Ambiente de Trabalho/UNI/2ºano/Semestre 2/ES2/ES-2/frontend/Pages/Produtos/Lista.cshtml]
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Produtos/Lista.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHV0b3NcTGlzdGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pc131/OneDrive/Ambiente de Trabalho/UNI/2ºano/Semestre 2/ES2/ES-2/frontend/Pages/Produtos/RegistarPreco.cshtml]
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Produtos/RegistarPreco.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHV0b3NcUmVnaXN0YXJQcmVjby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pc131/OneDrive/Ambiente de Trabalho/UNI/2ºano/Semestre 2/ES2/ES-2/frontend/Pages/Registar.cshtml]
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Registar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0YXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pc131/OneDrive/Ambiente de Trabalho/UNI/2ºano/Semestre 2/ES2/ES-2/frontend/Pages/_ViewImports.cshtml]
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
