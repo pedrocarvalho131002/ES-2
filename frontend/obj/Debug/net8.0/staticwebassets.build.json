@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "gNBTj/UEt4JvKiF7D+Kt9IHJ1SSgE1exlfMjDflJXYg=",
+  "Source": "SistemaPrecos.Web",
+  "BasePath": "_content/SistemaPrecos.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "SistemaPrecos.Web\\wwwroot",
+      "Source": "SistemaPrecos.Web",
+      "ContentRoot": "C:\\Users\\pc131\\OneDrive\\Ambiente de Trabalho\\UNI\\2ºano\\Semestre 2\\ES2\\ES-2\\frontend\\wwwroot\\",
+      "BasePath": "_content/SistemaPrecos.Web",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\pc131\\OneDrive\\Ambiente de Trabalho\\UNI\\2ºano\\Semestre 2\\ES2\\ES-2\\frontend\\wwwroot\\img\\CP.png",
+      "SourceId": "SistemaPrecos.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pc131\\OneDrive\\Ambiente de Trabalho\\UNI\\2ºano\\Semestre 2\\ES2\\ES-2\\frontend\\wwwroot\\",
+      "BasePath": "_content/SistemaPrecos.Web",
+      "RelativePath": "img/CP.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\CP.png"
+    }
+  ]
+}

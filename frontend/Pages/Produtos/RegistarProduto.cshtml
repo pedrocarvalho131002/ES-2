@@ -1,0 +1,44 @@
+@page
+@model RegistarProdutoModel
+@{
+    ViewData["Title"] = "Registar Produto";
+}
+
+<!-- mantém o mesmo CSS que tinhas (cortei aqui) -->
+
+<div class="form-container">
+    <a href="javascript:window.history.back()" class="btn-voltar">Voltar</a>
+
+    <h2>Registar Produto</h2>
+
+    @if (!string.IsNullOrEmpty(Model.Erro))
+    {
+        <div class="erro">@Model.Erro</div>
+    }
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+
+        <label>Nome do Produto:</label>
+        <input asp-for="Produto.Nome" placeholder="Ex: Arroz Agulha" />
+        <span asp-validation-for="Produto.Nome" class="text-danger"></span>
+
+        <label>Marca:</label>
+        <input asp-for="Produto.Marca" placeholder="Ex: Pingo Doce" />
+        <span asp-validation-for="Produto.Marca" class="text-danger"></span>
+
+        <label>Descrição:</label>
+        <input asp-for="Produto.Descricao" placeholder="Descrição do produto" />
+        <span asp-validation-for="Produto.Descricao" class="text-danger"></span>
+
+        <label>Categoria:</label>
+        <select asp-for="Produto.CategoriaId" asp-items="Model.Categorias"></select>
+        <span asp-validation-for="Produto.CategoriaId" class="text-danger"></span>
+
+        <button type="submit" class="btn-submit">Registar</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,177 @@
+@page "/login"
+@model SistemaPrecos.Web.Pages.LoginModel
+
+@{
+    ViewData["Title"] = "Iniciar Sessão";
+}
+
+<div class="login-page">
+    <div class="left-side">
+        <img src="/img/CP.png" alt="Compare Price" />
+    </div>
+
+    <div class="right-side">
+        <div class="login-card">
+            <h2>Iniciar Sessão</h2>
+
+            @if (!string.IsNullOrEmpty(Model.Erro))
+            {
+                <div class="erro">@Model.Erro</div>
+            }
+
+            <form method="post" asp-page="/login">
+                @Html.AntiForgeryToken()
+
+                <input asp-for="Username" placeholder="Utilizador" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+
+                <input asp-for="Password" type="password" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+                <button type="submit">Entrar</button>
+
+                <div class="register-link">
+                    <p>Ainda não tens conta? <a href="/Registar">Criar Conta</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f2f2f2;
+        color: #2c2c2c;
+    }
+
+    .login-page {
+        display: flex;
+        height: 100vh;
+    }
+
+    .left-side {
+        flex: 1;
+        background-color:rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .left-side img {
+        max-width: 60%;
+        height: auto;
+    }
+
+    .right-side {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e0e0e0;
+    }
+
+    .login-card {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+
+    /* Animação */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideIn 0.8s ease forwards;
+}
+
+@@keyframes fadeSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+    .login-card h2 {
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        color: #333;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 0.8rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+
+    button {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #111;
+    }
+
+    .erro {
+        color: red;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+
+    .text-danger {
+        color: #dc3545;
+        font-size: 0.875rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .register-link {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .register-link a {
+        color: #444;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+
+    @@media (max-width: 768px) {
+        .login-page {
+            flex-direction: column;
+        }
+
+        .left-side {
+            display: none;
+        }
+
+        .right-side {
+            flex: none;
+            height: 100vh;
+        }
+    }
+</style>

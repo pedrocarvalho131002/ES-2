@@ -1,0 +1,101 @@
+@page "{id:int}"
+@model SistemaPrecos.Web.Pages.Produtos.DetalhesModel
+@{
+    ViewData["Title"] = "Detalhes do Produto";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+        color: #2c2c2c;
+    }
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+    height: 80px;
+    margin-right: 1rem;
+}
+
+    .container {
+        max-width: 700px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 1.8rem;
+        color: #333;
+        margin-bottom: 2rem;
+    }
+
+    .produto-info p {
+        margin: 1rem 0;
+        font-size: 1.05rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+    }
+
+    .produto-info span {
+        font-weight: bold;
+        color: #333;
+        margin-right: 0.5rem;
+    }
+
+    .voltar {
+        text-align: center;
+        margin-top: 2.5rem;
+    }
+
+    .voltar a {
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: background 0.3s ease;
+    }
+
+    .voltar a:hover {
+        background-color: #111;
+    }
+</style>
+
+<div class="topbar">
+    <img src="/img/CP.png" alt="Compare Price" class="logo" />
+</div>
+
+<div class="container">
+    <h2>Detalhes do Produto</h2>
+
+    <div class="produto-info">
+        <p><span>Nome:</span> @Model.Produto.Nome</p>
+        <p><span>Marca:</span> @Model.Produto.Marca</p>
+        <p><span>Descrição:</span> @Model.Produto.Descricao</p>
+        @if (!string.IsNullOrEmpty(Model.Produto.Categoria?.Nome))
+        {
+            <p><span>Categoria:</span> @Model.Produto.Categoria.Nome</p>
+        }
+    </div>
+
+    <div class="voltar">
+        <a href="/Produtos/Lista">← Voltar à Lista</a>
+    </div>
+</div>
