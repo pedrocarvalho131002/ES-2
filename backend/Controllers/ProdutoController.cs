@@ -17,24 +17,51 @@ namespace SistemaPrecos.API.Controllers
             _context = context;
         }
 
+        /* -------------------------------------------------------------------
+         * GET: /api/produto
+         * -------------------------------------------------------------------*/
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
         {
             return await _context.Produtos.ToListAsync();
         }
 
+        /* -------------------------------------------------------------------
+         * GET: /api/produto/{id}
+         * -------------------------------------------------------------------*/
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> GetProduto(int id)
         {
             var produto = await _context.Produtos.FindAsync(id);
-            if (produto == null)
-            {
-                return NotFound();
-            }
-            return produto;
+
+            return produto is null ? NotFound() : produto;
         }
 
-        // ✅ NOVO ENDPOINT: Comparar preços mais recentes por loja
+        /* -------------------------------------------------------------------
+         * POST: /api/produto
+         * Cria um novo produto (NÃO regista preço)
+         * -------------------------------------------------------------------*/
+        [HttpPost]
+        public async Task<ActionResult<Produto>> PostProduto(Produto produto)
+        {
+            // validações simples de exemplo
+            if (string.IsNullOrWhiteSpace(produto.Nome))
+                return BadRequest("Nome é obrigatório.");
+
+            _context.Produtos.Add(produto);
+            await _context.SaveChangesAsync();
+
+            // devolve 201 Created e cabeçalho Location
+            return CreatedAtAction(
+                nameof(GetProduto),
+                new { id = produto.ProdutoId },
+                produto);
+        }
+
+        /* -------------------------------------------------------------------
+         * GET: /api/produto/{id}/comparar
+         * Devolve o preço mais recente do produto em cada loja
+         * -------------------------------------------------------------------*/
         [HttpGet("{id}/comparar")]
         public async Task<ActionResult<IEnumerable<ComparacaoPrecoViewModel>>> CompararPrecos(int id)
         {
@@ -48,21 +75,20 @@ namespace SistemaPrecos.API.Controllers
                 .Include(l => l.Localizacao)
                 .ToListAsync();
 
-            var resultado = precos
-                .Join(lojas,
+            var resultado = precos.Join(
+                    lojas,
                     preco => preco.LojaId,
-                    loja => loja.LojaId,
+                    loja  => loja.LojaId,
                     (preco, loja) => new ComparacaoPrecoViewModel
                     {
-                        NomeLoja = loja.Nome,
+                        NomeLoja    = loja.Nome,
                         Localizacao = $"{loja.Localizacao.Cidade} ({loja.Localizacao.CodigoPostal})",
-                        Preco = preco.Preco,
-                        Data = preco.DataRegisto
+                        Preco       = preco.Preco,
+                        Data        = preco.DataRegisto
                     })
                 .ToList();
 
             return Ok(resultado);
         }
-
     }
 }

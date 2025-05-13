@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPrecos.API", "backend\SistemaPrecos.API.csproj", "{D93B26B2-BEF8-D592-F743-E9D18533B152}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPrecos.Web", "frontend\SistemaPrecos.Web.csproj", "{56E0B78B-4EAA-812B-EB2B-301AFE3C2092}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D93B26B2-BEF8-D592-F743-E9D18533B152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D93B26B2-BEF8-D592-F743-E9D18533B152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D93B26B2-BEF8-D592-F743-E9D18533B152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D93B26B2-BEF8-D592-F743-E9D18533B152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56E0B78B-4EAA-812B-EB2B-301AFE3C2092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56E0B78B-4EAA-812B-EB2B-301AFE3C2092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56E0B78B-4EAA-812B-EB2B-301AFE3C2092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56E0B78B-4EAA-812B-EB2B-301AFE3C2092}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2964C48E-E77B-4A73-9157-1C5E842504E7}
+	EndGlobalSection
+EndGlobal

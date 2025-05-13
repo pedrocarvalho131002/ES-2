@@ -26,11 +26,21 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sistema Preços API", Version = "v1" });
 });
 
+builder.Services.AddCors(opts =>
+{
+    opts.AddDefaultPolicy(policy =>
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
 var app = builder.Build();
 
 // Middleware
 if (app.Environment.IsDevelopment())
 {
+    app.UseCors();
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
