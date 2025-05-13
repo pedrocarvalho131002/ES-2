@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SistemaPrecos.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3584a0aa00a27bf65999bce3088a3f00a04d5b54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e163d2041d1865052e6a8fccf3a8af10a4c339f")]
 [assembly: System.Reflection.AssemblyProductAttribute("SistemaPrecos.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SistemaPrecos.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

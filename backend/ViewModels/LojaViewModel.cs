@@ -1,4 +1,4 @@
-namespace SistemaPrecos.Web.ViewModels
+namespace SistemaPrecos.API.ViewModels
 {
     public class LojaViewModel
     {

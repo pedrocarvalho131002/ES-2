@@ -18,8 +18,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\gonca\OneDrive\Ambiente de Trabalho\VSCode\ES-2\ES-2\frontend
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Categorias/ListaCategorias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcmlhc1xMaXN0YUNhdGVnb3JpYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Lojas/ListaLojas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9qYXNcTGlzdGFMb2phcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/gonca/OneDrive/Ambiente de Trabalho/VSCode/ES-2/ES-2/frontend/Pages/Main.cshtml]
