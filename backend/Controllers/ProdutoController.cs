@@ -34,6 +34,25 @@ namespace SistemaPrecos.API.Controllers
             return produto;
         }
 
+        // POST: api/produto
+        [HttpPost]
+        public async Task<ActionResult<Produto>> PostProduto(ProdutoViewModel vm)
+        {
+            var produto = new Produto
+            {
+                Nome        = vm.Nome,
+                Marca       = vm.Marca,
+                Descricao   = vm.Descricao,
+                CategoriaId = vm.CategoriaId
+            };
+
+            _context.Produtos.Add(produto);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetProduto), new { id = produto.ProdutoId }, produto);
+        }
+
+
         // ✅ NOVO ENDPOINT: Comparar preços mais recentes por loja
         [HttpGet("{id}/comparar")]
         public async Task<ActionResult<IEnumerable<ComparacaoPrecoViewModel>>> CompararPrecos(int id)

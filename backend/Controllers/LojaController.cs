@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using SistemaPrecos.API.Data;
 using SistemaPrecos.API.Repositories;
 using SistemaPrecos.API.ViewModels;
+using SistemaPrecos.API.Models;
+
 
 namespace SistemaPrecos.API.Controllers
 {
@@ -40,5 +42,33 @@ namespace SistemaPrecos.API.Controllers
 
             return Ok(lojas);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> PostLoja(LojaViewModel vm)
+        {
+            // cria Localizacao
+            var loc = new Localizacao
+            {
+                Cidade        = vm.Localizacao.Cidade,
+                Pais          = vm.Localizacao.Pais,
+                CodigoPostal  = vm.Localizacao.CodigoPostal,
+                Latitude      = vm.Localizacao.Latitude,
+                Longitude     = vm.Localizacao.Longitude
+            };
+            _context.Localizacoes.Add(loc);
+            await _context.SaveChangesAsync();
+
+            // cria Loja
+            var loja = new Loja
+            {
+                Nome          = vm.Nome,
+                LocalizacaoId = loc.LocalizacaoId
+            };
+            _context.Lojas.Add(loja);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetLojas), new { id = loja.LojaId }, null);
+        }
+
     }
 }

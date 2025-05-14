@@ -1,0 +1,127 @@
+@page
+@model CriarLojaModel
+@{
+    ViewData["Title"] = "Registar Loja";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        color: #2c2c2c;
+    }
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+        height: 80px;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+        color: #333;
+    }
+
+    .voltar {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        padding: 0.6rem 1rem;
+        background-color: #333;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+
+    th, td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    th {
+        background-color: #444;
+        color: white;
+        font-weight: 600;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .empty {
+        text-align: center;
+        color: #888;
+        padding: 2rem;
+        font-style: italic;
+    }
+</style>
+
+
+<div class="topbar">
+    <img src="/img/CP.png" alt="Compare Price" class="logo" />
+    <a asp-page="/Login">Terminar Sessão</a>
+</div>
+
+<div class="form-container">
+    <a href="javascript:window.history.back()" class="btn-voltar">Voltar</a>
+
+    <h2>Registar Loja</h2>
+
+    @if (!string.IsNullOrEmpty(Model.Erro))
+    {
+        <div class="erro">@Model.Erro</div>
+    }
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+
+        <label>Nome da Loja:</label>
+        <input asp-for="Loja.Nome" placeholder="Ex: Supermercado Centro" />
+        <span asp-validation-for="Loja.Nome" class="text-danger"></span>
+
+        <label>Cidade:</label>
+        <input asp-for="Loja.Localizacao.Cidade" placeholder="Lisboa" />
+        <span asp-validation-for="Loja.Localizacao.Cidade" class="text-danger"></span>
+
+        <label>País:</label>
+        <input asp-for="Loja.Localizacao.Pais" placeholder="Portugal" />
+        <span asp-validation-for="Loja.Localizacao.Pais" class="text-danger"></span>
+
+        <label>Código-Postal:</label>
+        <input asp-for="Loja.Localizacao.CodigoPostal" placeholder="1000-000" />
+        <span asp-validation-for="Loja.Localizacao.CodigoPostal" class="text-danger"></span>
+
+        <button type="submit" class="btn-submit">Criar</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

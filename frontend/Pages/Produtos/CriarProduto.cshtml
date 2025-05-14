@@ -1,7 +1,7 @@
 @page
-@model RegistarPrecoModel
+@model CriarProdutoModel
 @{
-    ViewData["Title"] = "Registar Preço";
+    ViewData["Title"] = "Criar Produto";
 }
 
 <style>
@@ -127,7 +127,7 @@
 <div class="form-container">
     <a href="javascript:window.history.back()" class="btn-voltar">Voltar</a>
 
-    <h2>Registar Preço</h2>
+    <h2>Novo Produto</h2>
 
     @if (!string.IsNullOrEmpty(Model.Erro))
     {
@@ -137,19 +137,23 @@
     <form method="post">
         @Html.AntiForgeryToken()
 
-        <label>Produto:</label>
-        <select asp-for="ProdutoId" asp-items="Model.Produtos"></select>
-        <span asp-validation-for="ProdutoId" class="text-danger"></span>
+        <label>Nome do Produto:</label>
+        <input asp-for="Produto.Nome" placeholder="Ex: Arroz Agulha" />
+        <span asp-validation-for="Produto.Nome" class="text-danger"></span>
 
-        <label>Loja:</label>
-        <select asp-for="LojaId" asp-items="Model.Lojas"></select>
-        <span asp-validation-for="LojaId" class="text-danger"></span>
+        <label>Marca:</label>
+        <input asp-for="Produto.Marca" placeholder="Ex: Pingo Doce" />
+        <span asp-validation-for="Produto.Marca" class="text-danger"></span>
 
-        <label>Preço:</label>
-        <input asp-for="Preco" type="number" step="0.01" placeholder="0.00" />
-        <span asp-validation-for="Preco" class="text-danger"></span>
+        <label>Descrição:</label>
+        <input asp-for="Produto.Descricao" placeholder="Descrição do produto" />
+        <span asp-validation-for="Produto.Descricao" class="text-danger"></span>
 
-        <button type="submit" class="btn-submit">Registar</button>
+        <label>Categoria:</label>
+        <select asp-for="Produto.CategoriaId" asp-items="Model.Categorias"></select>
+        <span asp-validation-for="Produto.CategoriaId" class="text-danger"></span>
+
+        <button type="submit" class="btn-submit">Criar</button>
     </form>
 </div>
 
