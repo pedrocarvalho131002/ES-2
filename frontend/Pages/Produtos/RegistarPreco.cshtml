@@ -119,40 +119,80 @@
     }
 </style>
 
+<!-- topo reutilizado -->
 <div class="topbar">
     <img src="/img/CP.png" alt="Compare Price" class="logo" />
     <a asp-page="/Login">Terminar Sessão</a>
 </div>
 
 <div class="form-container">
-    <a href="javascript:window.history.back()" class="btn-voltar">Voltar</a>
-
+    <a href="javascript:history.back()" class="btn-voltar">Voltar</a>
     <h2>Registar Preço</h2>
+
+    <!-- ---------- FORM 1 : escolher produto ---------- -->
+    <form method="get" style="display:flex;gap:1rem;align-items:flex-end">
+        <div style="flex:1">
+            <label>Produto:</label>
+            <select asp-for="ProdutoId" asp-items="Model.Produtos"></select>
+            <span asp-validation-for="ProdutoId" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn-submit" style="width:auto">Listar</button>
+    </form>
+
+    <!-- ---------- tabela de preços (apenas se houver) ---------- -->
+    @if (Model.ListaPrecos is not null)
+    {
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Loja</th>
+                    <th>Localização</th>
+                    <th>Preço</th>
+                    <th>Data</th>
+                    <th>Credibilidade</th> 
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var p in Model.ListaPrecos)
+            {
+                <tr>
+                    <td>@p.Loja</td>
+                    <td>@p.Localizacao</td>
+                    <td>@p.Preco.ToString("0.00€")</td>
+                    <td>@p.DataRegisto.ToString("dd/MM/yyyy")</td>
+                    <td>@p.Credibilidade.ToString("0.##")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+
+    <!-- ---------- FORM 2 : registar novo preço ---------- -->
+    @if (Model.ProdutoId > 0)
+    {
+        <hr />
+        <form method="post">
+            <input type="hidden" asp-for="ProdutoId" />
+
+            <label>Loja:</label>
+            <select asp-for="LojaId" asp-items="Model.Lojas"></select>
+            <span asp-validation-for="LojaId" class="text-danger"></span>
+
+            <label>Preço:</label>
+            <input asp-for="Preco" type="number" step="0.01" placeholder="0.00" />
+            <span asp-validation-for="Preco" class="text-danger"></span>
+
+            <button type="submit" class="btn-submit">Registar</button>
+        </form>
+    }
 
     @if (!string.IsNullOrEmpty(Model.Erro))
     {
         <div class="erro">@Model.Erro</div>
     }
-
-    <form method="post">
-        @Html.AntiForgeryToken()
-
-        <label>Produto:</label>
-        <select asp-for="ProdutoId" asp-items="Model.Produtos"></select>
-        <span asp-validation-for="ProdutoId" class="text-danger"></span>
-
-        <label>Loja:</label>
-        <select asp-for="LojaId" asp-items="Model.Lojas"></select>
-        <span asp-validation-for="LojaId" class="text-danger"></span>
-
-        <label>Preço:</label>
-        <input asp-for="Preco" type="number" step="0.01" placeholder="0.00" />
-        <span asp-validation-for="Preco" class="text-danger"></span>
-
-        <button type="submit" class="btn-submit">Registar</button>
-    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
