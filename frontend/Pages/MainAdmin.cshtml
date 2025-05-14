@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Painel Administrador";
 }
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var adminId = HttpContextAccessor.HttpContext?.Request.Cookies["userId"];
+}
 
 <style>
     body {
@@ -67,17 +71,83 @@
         background-color: #111;
         transform: scale(1.05);
     }
+
+    .mensagem-fab {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background-color: #333;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        cursor: pointer;
+        z-index: 1000;
+        transition: background-color 0.3s;
+    }
+
+    .mensagem-fab:hover {
+        background-color: #111;
+    }
+
+    .mensagem-fab svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+    }
+
+    .mensagem-modal {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 300px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        padding: 1rem;
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+        z-index: 1001;
+    }
+
+    .mensagem-modal textarea {
+        width: 100%;
+        height: 100px;
+        resize: none;
+        border-radius: 8px;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+    }
+
+    .mensagem-modal button {
+        align-self: flex-end;
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .mensagem-modal button:hover {
+        background-color: #111;
+    }
 </style>
 
+<!-- Topbar -->
 <div class="topbar">
     <img src="/img/CP.png" alt="Compare Price" class="logo" />
-
     <div>
         Olá, <strong>@Model.NomeUtilizador</strong>
         <a asp-page="/Main">Terminar Sessão</a>
     </div>
 </div>
 
+<!-- Conteúdo principal -->
 <div class="main-content">
     <h2>Painel de Administração</h2>
 
@@ -86,3 +156,58 @@
     <a class="button" href="/Categorias/ListaCategorias">Listar Categorias</a>
 </div>
 
+<!-- Botão flutuante para mensagens -->
+<div class="mensagem-fab" onclick="toggleMensagemModal()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M2 2v20l4-4h16V2H2zm16 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+    </svg>
+</div>
+
+<!-- Modal de envio de mensagem -->
+<div id="mensagemModal" class="mensagem-modal">
+    <textarea id="mensagemTexto" placeholder="Escreve a mensagem..."></textarea>
+    <button onclick="enviarMensagem()">Enviar</button>
+</div>
+
+<!-- Script -->
+<script>
+    const utilizadorId = '@adminId';
+
+    function toggleMensagemModal() {
+        const modal = document.getElementById('mensagemModal');
+        modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    async function enviarMensagem() {
+        const texto = document.querySelector('#mensagemModal textarea').value;
+        if (texto.trim() === '') {
+            alert('Escreve uma mensagem primeiro!');
+            return;
+        }
+
+        const mensagem = {
+            conteudo: texto,
+            idUtilizador: parseInt(utilizadorId)
+        };
+
+        try {
+            const response = await fetch('http://localhost:5000/api/mensagem/enviar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(mensagem)
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro ao enviar mensagem');
+            }
+
+            alert('Mensagem enviada!');
+            document.querySelector('#mensagemModal textarea').value = '';
+            document.getElementById('mensagemModal').style.display = 'none';
+        } catch (error) {
+            alert('Erro ao enviar: ' + error.message);
+        }
+    }
+</script>

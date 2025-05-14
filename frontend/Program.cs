@@ -22,6 +22,8 @@ builder.Services.AddHttpClient("Api", client =>
     client.BaseAddress = new Uri("http://localhost:5000/api/");
 });
 
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())

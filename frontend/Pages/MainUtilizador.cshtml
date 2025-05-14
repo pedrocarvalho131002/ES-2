@@ -1,14 +1,32 @@
 @page
 @model SistemaPrecos.Web.Pages.MainUtilizadorModel
-
 @{
     ViewData["Title"] = "Área do Utilizador - Compare Price";
 }
+<!-- Ícone flutuante -->
+<div class="mensagem-fab" onclick="toggleMensagemBox()">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="28" height="28">
+        <path d="M2 2v20l4-4h16V2H2zm16 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+    </svg>
+</div>
 
+<!-- Caixa de mensagens -->
+<div id="mensagemBox" class="mensagem-box">
+    <h3>Mensagens do Administrador</h3>
+    <ul>
+        @foreach (var m in Model.Mensagens)
+        {
+            <li>
+                <span class="data">@m.DataEnvio.ToString("dd/MM/yyyy HH:mm")</span>
+                <div class="texto">@m.Conteudo</div>
+            </li>
+        }
+    </ul>
+</div>
 <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: #f2f2f2;
+        background-color: #f2f2f2;
         margin: 0;
         color: #2c2c2c;
     }
@@ -69,13 +87,100 @@
         transform: scale(1.05);
     }
 
-    .welcome {
-        margin-bottom: 2rem;
+    .mensagem-fab {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #333;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        z-index: 1000;
+    }
+
+    .mensagem-box {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 320px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    padding: 1.2rem;
+    z-index: 1001;
+
+    opacity: 0;
+    transform: translateY(20px);
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+.mensagem-box.open {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+
+
+    .mensagem-box h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
         font-size: 1.2rem;
-        color: #555;
+        color: #333;
+    }
+
+    .mensagem-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 250px;
+        overflow-y: auto;
+    }
+
+    .mensagem-box li {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+    }
+
+    .mensagem-box .data {
+        font-size: 0.85rem;
+        color: #999;
+        display: block;
+    }
+
+    .mensagem-box .texto {
+        font-size: 0.95rem;
+        color: #222;
+        margin-top: 0.2rem;
     }
 </style>
+<script>
+    function toggleMensagemBox() {
+        const box = document.getElementById('mensagemBox');
 
+        if (box.classList.contains('open')) {
+            box.classList.remove('open');
+
+            // Mantém visível até a transição acabar
+            setTimeout(() => {
+                if (!box.classList.contains('open')) {
+                    box.style.visibility = 'hidden';
+                }
+            }, 300);
+        } else {
+            box.style.visibility = 'visible';
+            box.classList.add('open');
+        }
+    }
+
+</script>
 <div class="topbar">
     <img src="/img/CP.png" alt="Compare Price" class="logo" />
 
